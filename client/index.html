@@ -1,0 +1,84 @@
+<head>
+  <title>Meteor File Upload Example</title>
+</head>
+
+
+<body>
+  <div class="container-narrow">
+
+    <div class="masthead">
+      <ul class="nav nav-pills pull-right">
+        <li><a href="/">File List</a></li>
+      </ul>
+      <h3 class="muted">Meteor File Upload Example</h3>
+    </div>
+
+    <div class="row">
+      <div class="span8">
+        {{{renderPage}}}
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+<template name="listFiles">
+  <h3>Files</h3>
+  <table class='table table-bordered table-striped'>
+    <thead>
+      <th>Title</th>
+      <th>FileName</th>
+      <th>Size</th>
+      <th>Path</th>
+    </thead>
+    <tbody>
+    {{#each list }}
+      <tr>
+        <td>{{title}}</td>
+        <td>{{name}}</td>
+        <td>{{size}}</td>
+        <td>{{path}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+  </table>
+  <button id="addFileBtn" class="btn">Add File</a>
+</template>
+
+<template name="addFile">
+  <form class="form-horizontal" method='post' action='/upload/file' enctype="multipart/form-data">
+    <legend>Upload File</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="fileTitle">Name:</label>
+      <div class="controls">
+        <input class="span3" id='fileTitle' type="text" name='fileTitle' placeholder="Name or Title" required>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="fileInfo">File:</label>
+      <div class="controls">
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+          <div class="input-append">
+            <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i>
+              <span class="fileupload-preview"></span>
+            </div>
+            <span class="btn btn-file">
+              <span class="fileupload-new">Select File</span>
+              <span class="fileupload-exists">Change</span>
+              <input name="fileInfo" type="file"/></span>
+              <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button id="uploadBtn" type="submit" class="btn btn-primary">Upload</button>
+        <button id="cancelBtn" type="button" class="btn">Cancel</button>
+      </div>
+    </form>
+
+</template> 
